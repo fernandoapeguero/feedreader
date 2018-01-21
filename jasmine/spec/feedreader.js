@@ -33,13 +33,12 @@ $(function () {
          * and that the URL is not empty.
          */
         it('feed should have a url', () => {
-            let allHaveUrl = false;
             allFeeds.forEach(feed => {
-                if (feed.name === null || feed.name.trim().length === 0) {
-                    allHaveUrl = false;
-                }
+                expect(feed.name).toBeDefined();
+                expect(feed.name).not.toBe(0);
+
             });
-            expect(allHaveUrl).toBe(true);
+
         });
 
         /* TODO: Write a test that loops through each feed
@@ -48,13 +47,10 @@ $(function () {
          */
         it('feed should have a name', () => {
 
-            let shouldHaveName = true;
             allFeeds.forEach(feed => {
-                if (feed.name === null || feed.name.trim().length === 0) {
-                    shouldHaveName = false;
-                }
+                expect(feed.url).toBeDefined();
+                expect(feed.url).not.toBe(0);
             });
-            expect(shouldHaveName).toBe(true);
         });
 
     });
@@ -62,7 +58,8 @@ $(function () {
 
     /* TODO: Write a new test suite named "The menu" */
     describe('The Menu', () => {
-
+        const hiddenMenu = document.body;
+        const iconMenu = document.querySelector('.menu-icon-link');
 
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
@@ -71,7 +68,7 @@ $(function () {
          */
         it('menu should be hidden by default', () => {
 
-            expect(document.body.className.includes("menu-hidden")).toBe(true);
+            expect(hiddenMenu.className.includes('menu-hidden')).toBe(true);
         });
 
         /* TODO: Write a test that ensures the menu changes
@@ -81,8 +78,13 @@ $(function () {
          */
 
         it('menu should open and close', () => {
+            
+            iconMenu.click();
+            expect(hiddenMenu.className.includes('.menu-hidden')).not.toBe(true);
 
 
+            iconMenu.click();
+            expect(hiddenMenu.className.includes('.menu-hidden').toBe(true));
         });
 
         /* TODO: Write a new test suite named "Initial Entries" */
