@@ -45,10 +45,11 @@ $(function () {
          */
         it('feed should have a name', () => {
 
-
             allFeeds.forEach(feed => {
                 expect(feed.name).toBeDefined();
                 expect(feed.name.length).toBeGreaterThan(0);
+
+
             });
         });
 
@@ -57,18 +58,18 @@ $(function () {
 
     /* TODO: Write a new test suite named "The menu" */
     describe('The Menu', () => {
-
         const hiddenMenu = document.body;
         const menuIconButton = document.querySelector('.menu-icon-link');
         const menuClass = 'menu-hidden';
+
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
         it('menu should be hidden by default', () => {
-
             expect(hiddenMenu.className.includes(menuClass)).toBe(true);
+
         });
 
         /* TODO: Write a test that ensures the menu changes
