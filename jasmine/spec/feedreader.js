@@ -96,7 +96,7 @@ $(function () {
             loadFeed(0, function () {
                 done();
             });
-            
+
         });
 
         /* TODO: Write a test that ensures when the loadFeed
@@ -107,16 +107,19 @@ $(function () {
          */
         it('loadfeed should have at least one element', (done) => {
             const entries = document.querySelector('.feed').getElementsByClassName('entry').length;
-            console.log(entries);
             expect(entries).toBeGreaterThan(0);
             done();
         });
 
     });
     /* TODO: Write a new test suite named "New Feed Selection" */
-    describe('New Feed Selection', () => {
+    describe('New Feed Selection', (done) => {
 
-
+        it('content has to changes on click', (done) => {
+            const feed = document.querySelector('.feed a');
+            expect(feed.getAttribute('href').includes('http://')).toBe(true);
+            done();
+        });
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
