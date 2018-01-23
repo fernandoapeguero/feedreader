@@ -81,9 +81,9 @@ $(function () {
         it('menu should open and close', () => {
             //eventlistener was not working for this purpose so i use click seem to work
             menuIconButton.click();
-            expect(hiddenMenu.className.includes('menu-hidden')).not.toBe(true);
+            expect(hiddenMenu.className.includes(menuClass)).not.toBe(true);
             menuIconButton.click();
-            expect(hiddenMenu.className.includes('menu-hidden')).toBe(true);
+            expect(hiddenMenu.className.includes(menuClass)).toBe(true);
 
         });
     });
@@ -92,9 +92,11 @@ $(function () {
     describe('initial Entries ', (done) => {
         const feedEntries = document.querySelector('.feed entry');
 
-        beforeEach(function () {
-            loadFeed();
-            done();
+        beforeEach(function (done) {
+            loadFeed(0, function () {
+                done();
+            });
+            
         });
 
         /* TODO: Write a test that ensures when the loadFeed
@@ -103,7 +105,7 @@ $(function () {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-        it('loadfeed should have at least one element', () => {
+        it('loadfeed should have at least one element', (done) => {
             const entries = document.querySelector('.feed').getElementsByClassName('entry').length;
             console.log(entries);
             expect(entries).toBeGreaterThan(0);
