@@ -7,6 +7,8 @@ To run this project all you need is any of the modern browsers.
 * opera
 * others
 
+Ones you have your browser all you need to do to see if the tests are running is open the index.html file in side your feedreader folder.
+
 You will also need a text Editor like.
 
 *  sublime 
