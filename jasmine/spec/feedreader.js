@@ -36,6 +36,7 @@ $(function () {
             allFeeds.forEach(feed => {
                 expect(feed.url).toBeDefined();
                 expect(feed.url.length).toBeGreaterThan(0);
+                expect(feed.url).toBeTruthy();
             });
         });
 
@@ -68,7 +69,7 @@ $(function () {
          * hiding/showing of the menu element.
          */
         it('menu should be hidden by default', () => {
-            expect(hiddenMenu.className.includes(menuClass)).toBe(true);
+            expect($(hiddenMenu).hasClass(menuClass)).toBe(true);
 
         });
 
@@ -81,16 +82,15 @@ $(function () {
         it('menu should open and close', () => {
             //eventlistener was not working for this purpose so i use click seem to work
             menuIconButton.click();
-            expect(hiddenMenu.className.includes(menuClass)).not.toBe(true);
+            expect($(hiddenMenu).hasClass(menuClass)).not.toBe(true);
             menuIconButton.click();
-            expect(hiddenMenu.className.includes(menuClass)).toBe(true);
+            expect($(hiddenMenu).hasClass(menuClass)).toBe(true);
 
         });
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
-    describe('initial Entries ', (done) => {
-        const feedEntries = document.querySelector('.feed entry');
+    describe('initial Entries ', () => {
 
         beforeEach(function (done) {
             loadFeed(0, function () {
@@ -106,7 +106,8 @@ $(function () {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
         it('loadfeed should have at least one element', (done) => {
-            const entries = document.querySelector('.feed').getElementsByClassName('entry').length;
+            const entries = $('.feed .entry').length;
+            console.log(entries);
             expect(entries).toBeGreaterThan(0);
             done();
         });
@@ -115,6 +116,7 @@ $(function () {
     /* TODO: Write a new test suite named "New Feed Selection" */
     describe('New Feed Selection', (done) => {
 
+        // not sure how to check the load of the page so i decided to check is there a valid url to be click and that way know if the content will change
         it('content has to changes on click', (done) => {
             const feed = document.querySelector('.feed a');
             expect(feed.getAttribute('href').includes('http://')).toBe(true);
