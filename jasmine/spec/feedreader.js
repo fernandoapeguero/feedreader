@@ -93,18 +93,16 @@ $(function () {
         let secondFeed = '';
         //loading the feed to get the information to compared after in the test 
         beforeEach(function (done) {
-
+            loadFeed(0, function () {
                 firstFeed = $('.feed a');
-            loadFeed(1, function () {
-                secondFeed = $('.feed a');
-                done();
+                loadFeed(1, function () {
+                    secondFeed = $('.feed a');
+                    done();
+                });
             });
-
         });
         // check for the content of the feed fater loading then in the beforeEach 
         it('content has to changes on click', (done) => {
-            console.log(firstFeed.html());
-            console.log(secondFeed.html());
             expect(firstFeed.html() === secondFeed.html()).toBe(false);
             done();
         });
