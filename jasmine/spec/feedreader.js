@@ -63,7 +63,7 @@ $(function () {
         it('menu should open and close', () => {
             // eventlistener was not working for this purpose so i use click seem to work
             menuIconButton.click();
-            expect($(hiddenMenu).hasClass(menuClass)).not.toBe(true);
+            expect($(hiddenMenu).hasClass(menuClass)).toBe(false);
             menuIconButton.click();
             expect($(hiddenMenu).hasClass(menuClass)).toBe(true);
 
@@ -93,9 +93,8 @@ $(function () {
         let secondFeed = '';
         //loading the feed to get the information to compared after in the test 
         beforeEach(function (done) {
-            loadFeed(0, function () {
+
                 firstFeed = $('.feed a');
-            });
             loadFeed(1, function () {
                 secondFeed = $('.feed a');
                 done();
@@ -104,7 +103,9 @@ $(function () {
         });
         // check for the content of the feed fater loading then in the beforeEach 
         it('content has to changes on click', (done) => {
-            expect(firstFeed === secondFeed).not.toBe(true);
+            console.log(firstFeed.html());
+            console.log(secondFeed.html());
+            expect(firstFeed.html() === secondFeed.html()).toBe(false);
             done();
         });
 
